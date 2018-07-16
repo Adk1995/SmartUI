@@ -1,0 +1,72 @@
+@media screen and (min-width: 1000px) {
+  body{
+    background: radial-gradient(circle, rgba(180,174,233,1) 0%, rgba(148,187,233,1) 100%);
+    color: #000000;
+    font-family: 'Raleway', sans-serif;
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .title{
+  text-align: center;
+  padding: 0em;
+  font-weight: bold;
+  }
+  .demoButton{
+    color: white;
+    background:  #f0027f;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #f0027f;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 30px;
+    border-radius: 50px;
+  }
+  .cancerButton{
+    color: white;
+    background:  #691887;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #691887;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 30px;
+    border-radius: 50px;
+  }
+  .treatmentButton{
+    color: white;
+    background:  #163f7f;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #163f7f;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 30px;
+    border-radius: 50px;
+  }
+  .mainContent{
+  position: relative;
+    float: left;
+    width: 33%;
+    margin-right: 1%;
+    padding-right: 3em;
+
+  }
+  .mainCancerContent{
+    position: relative;
+    float: left;
+    width: 33%;
+    margin-right: 1%;
+    padding-right: 3em;
+
+  }
+
+  .mainTreatmentContent{
+    float: left;
+    width: 30%;
+    margin-right: 1%;
+  }
+.neckGraph{
+  position: relative;
+  height: 65%;
+  width: 65%;
+}
+}

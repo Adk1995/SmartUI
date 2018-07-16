@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="css/phoneLayout.css">
+  <link rel="stylesheet" href="css/tabletLayout.css">
+  <link rel="stylesheet" href="css/laptopLayout.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700|Raleway" rel="stylesheet">
+  <script type="text/javascript" src="js/openForms.js"></script>
+  <script type="text/javascript" src="js/drawLymphNodeGraph.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+  <title>SMART Therapy Explorer</title>
+</head>
+<body>
+  <div class="container">
+    <h3 class="title">SMART Therapy Explorer</h3>
+    <i class="far fa-question-circle"></i>
+    <i class="fas fa-info-circle"></i>
+    <div class="buttons">
+      <div class="mainContent">
+        <button type="button" class="demoButton" onclick="showDemographics()">Demographics<i class="fa fa-caret-down" aria-hidden="true"></i></button>
+        <div id="demographics" class="animated fadeInDown" style="display:none">
+          <form>
+            <p>
+              <label>Patient ID</label>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                </select>
+          </p>
+          <p>
+              <label>Age</label>
+              <input type="text" name="age">
+            </p>
+            <p>
+              <label>Gender</label>
+              <input type="radio" name="gender" value="male" checked> Male
+              <input type="radio" name="gender" value="female"> Female
+            </p>
+            <p>
+                <label>Race</label>
+                <input type="text" name="race">
+              </p>
+            <p>
+              <label>Aspiration</label>
+              <input type="radio" name="aspirationPreTherapy" value="yes" checked> Yes
+              <input type="radio" name="aspirationPreTherapy" value="no"> No
+            </p>
+            <p>
+              <label>HPV/P16</label>
+            <input type="text" name="HPV">
+            </p>
+
+              <label>ECOG Value</label>
+            <p>
+              <input type="radio" name="ecogValue" value="0">0
+              <input type="radio" name="ecogValue" value="1">1
+              <input type="radio" name="ecogValue" value="2">2
+              <input type="radio" name="ecogValue" value="3">3
+            </p>
+            <p>
+              <label>Smoking Status</label>
+
+              <input type="radio" name="smokingStatus" value="Never">Never
+              <input type="radio" name="smokingStatus" value="Former">Former
+              <input type="radio" name="smokingStatus" value="Current">Current
+            </p>
+            <p>
+              <label>Packs/Day</label>
+              <input type="text" name="packsPerDay">
+            </p>
+            <button class="btn btn-primary" type="button" onclick="showCancerDescriptors()">Next</button>
+            </form>
+        </div>
+      </div>
+      <div class="mainCancerContent">
+        <button type="button" class="cancerButton" onclick="showCancerDescriptors()">Cancer Descriptors<i class="fa fa-caret-down" aria-hidden="true"></i></button>
+        <div id="cancerDescriptors" class="animated fadeInDown" style="display:none">
+          <p>
+            <label>Tumor Site</label>
+            <input type="text" name="tumorSite">
+          </p>
+          <p>
+            <label>Tumor Subsite</label>
+            <input type="text" name="tumorSubsite">
+          </p>
+          <p>
+            <label>AJCC 7th Edition</label>
+            <input type="radio" name="ajcc7th" value="I">I
+            <input type="radio" name="ajcc7th" value="II">II
+            <input type="radio" name="ajcc7th" value="III">III
+            <input type="radio" name="ajcc7th" value="IV">IV
+          </p>
+          <p>
+            <label>AJCC 8th Edition</label>
+            <input type="radio" name="ajcc8th" value="I">I
+            <input type="radio" name="ajcc8th" value="II">II
+            <input type="radio" name="ajcc8th" value="III">III
+            <input type="radio" name="ajcc8th" value="IV">IV
+          </p>
+          <p>
+            <label>T-category</label>
+            <input type="radio" name="tCategory" value="Tis">Tis
+            <input type="radio" name="tCategory" value="T0">T0
+            <input type="radio" name="tCategory" value="T1">T1
+            <input type="radio" name="tCategory" value="T2">T2
+            <input type="radio" name="tCategory" value="T2">T3
+            <input type="radio" name="tCategory" value="T2">T4
+          </p>
+          <p>
+            <label>N-Category</label>
+            <input type="radio" name="nCategory" value="Tis">Nx
+            <input type="radio" name="nCategory" value="T0">N0
+            <input type="radio" name="nCategory" value="T1">N1
+            <input type="radio" name="nCategory" value="T2">N2
+            <input type="radio" name="nCategory" value="T2">N3
+          </p>
+          <p>
+            <label>Pathological Grade</label>
+            <input type="radio" name="pathologicalGrade" value="I">I
+            <input type="radio" name="pathologicalGrade" value="II">II
+            <input type="radio" name="pathologicalGrade" value="III">III
+            <input type="radio" name="pathologicalGrade" value="IV">IV
+          </p>
+          <button class="btn btn-primary" type="button" onclick="showTreatment()">Next</button>
+        </div>
+      </div>
+      <div class="mainTreatmentContent">
+        <button type="button" class="treatmentButton" onclick="showTreatment()">Treatment<i class="fa fa-caret-down" aria-hidden="true"></i></button>
+        <div id="treatment" class=" animated fadeInDown" style="display: none">
+          <p>
+            <label>Chemotherapy</label>
+            <input type="text" name="chemoTherapy">
+          </p>
+          <p>
+            <label>Local Therapy</label>
+            <input type="text" name="localTherapy">
+          </p>
+          <p>
+            <label>Treatment Duration</label>
+            <input type="text" name="treatmentDuration">
+          </p>
+          <p>
+            <label>Dose/Day</label>
+            <input type="text" name="dosePerDay">
+          </p>
+          <p>
+            <label>Neck Boost</label>
+            <input type="radio" name="neckBoost" value="Yes">Yes
+            <input type="radio" name="neckBoost" value="No">No
+          </p>
+          <button class="btn btn-primary" type="submit" onclick="showCancerDescriptors()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
