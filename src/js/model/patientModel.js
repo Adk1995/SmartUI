@@ -63,6 +63,52 @@ let PatientModel = function() {
   {
     let otherPatients = [];
     let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
+    let id = App.models.applicationState.setSelectedPatientID(20);
+    let subjectID = App.models.applicationState.getSelectedPatientID();
+    let patientAttributes = App.demographicAttributes;
+    let excludedAttributes = App.models.applicationState.getExcludedAttributes();
+
+    let attributesSelected = _.difference(patientAttributes,excludedAttributes);
+
+
+    for(let patientID of Object.keys(self.patients)){
+      if(patientID != subjectID && patientID != 'columns')
+      {
+
+        otherPatients[patientID] = {};
+        otherPatients[patientID].id = patientID;
+        otherPatients[patientID].score = similarityScore(patientID,subjectID,attributesSelected);
+
+      }
+    }
+    console.log(attributesSelected);
+    let sortedPatients = _.sortBy(otherPatients, ['score']);
+    sortedPatients.reverse();
+    console.log(sortedPatients);
+    let topKpatients = [];
+    for(let i=1; i<=numberOfNeighbors; i++)
+    {
+      let neighbor = self.patients[sortedPatients[i].id];
+      neighbor.score = sortedPatients[i].score;
+      topKpatients.push(neighbor);
+    }
+    return topKpatients;
+  }
+  function similarityScore(patientID, subjectID, attributesSelected)
+  {
+      let score = 0;
+      let tieBreaker = -(Math.abs(self.patients[patientID]["Age at Diagnosis (Calculated)"]-self.patients[subjectID]["Age at Diagnosis (Calculated)"]));
+
+      score+=tieBreaker;
+
+      for(let attribute of attributesSelected)
+      {
+        if(self.patients[patientID][attribute] === self.patients[subjectID][attribute])
+        {
+          score+=1;
+        }
+      }
+      return score;
   }
   function getPatientAttributeDomains()
   {
@@ -72,6 +118,7 @@ let PatientModel = function() {
     loadPatients,
     getPatients,
     getPatientAttributeDomains,
+    calculateSimilarPatients,
     calculatePatientAttributeDomains
   };
 }

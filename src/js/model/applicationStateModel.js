@@ -27,10 +27,19 @@ let ApplicationStateModel = function() {
     return self.selectedPatientID;
   }
 
+  function getExcludedAttributes(){
+    return self.excludedAttributes;
+  }
+  function setExcludedAttributes(attributes){
+    self.excludedAttributes = attributes;
+  }
+
   return {
     setNumberOfNeighbors,
     getNumberOfNeighbors,
     setSelectedPatientID,
-    getSelectedPatientID
+    getSelectedPatientID,
+    getExcludedAttributes,
+    setExcludedAttributes
   }
 }

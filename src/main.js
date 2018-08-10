@@ -46,7 +46,7 @@ var App = App || {};
 
   App.init=function() {
     App.models.patient.loadPatients().then(function(){
-      console.log(App.models.patient.getPatientAttributeDomains());
+      console.log(App.models.patient.calculateSimilarPatients());
     })
     .catch(function(err) {
               console.log("Promise Error", err);
