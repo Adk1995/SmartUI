@@ -40,11 +40,13 @@ var App = App || {};
                               "OS (Calculated)"];
 
   App.models.patient=new PatientModel();
-  console.log(App.demographicAttributes,App.cancerAttributes);
+  App.models.applicationState = new ApplicationStateModel();
+
+  console.log(App.models.applicationState);
 
   App.init=function() {
     App.models.patient.loadPatients().then(function(){
-      console.log(App.models.patient.getPatients());
+      console.log(App.models.patient.getPatientAttributeDomains());
     })
     .catch(function(err) {
               console.log("Promise Error", err);
