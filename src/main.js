@@ -42,11 +42,14 @@ var App = App || {};
   App.models.patient=new PatientModel();
   App.models.applicationState = new ApplicationStateModel();
 
+  App.controllers.patientSelector = new InputFillController();
+
   console.log(App.models.applicationState);
 
   App.init=function() {
     App.models.patient.loadPatients().then(function(){
-      console.log(App.models.patient.calculateSimilarPatients());
+      console.log(App.controllers.patientSelector.populatePatientDropdown());
+      App.controllers.patientSelector.selectPatient(".idSelect");
     })
     .catch(function(err) {
               console.log("Promise Error", err);

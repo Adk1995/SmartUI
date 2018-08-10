@@ -63,8 +63,8 @@ let PatientModel = function() {
   {
     let otherPatients = [];
     let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
-    let id = App.models.applicationState.setSelectedPatientID(20);
     let subjectID = App.models.applicationState.getSelectedPatientID();
+    //Patient Attributes to be changes to include everything
     let patientAttributes = App.demographicAttributes;
     let excludedAttributes = App.models.applicationState.getExcludedAttributes();
 
@@ -84,13 +84,14 @@ let PatientModel = function() {
     console.log(attributesSelected);
     let sortedPatients = _.sortBy(otherPatients, ['score']);
     sortedPatients.reverse();
-    console.log(sortedPatients);
+
     let topKpatients = [];
     for(let i=1; i<=numberOfNeighbors; i++)
     {
       let neighbor = self.patients[sortedPatients[i].id];
       neighbor.score = sortedPatients[i].score;
       topKpatients.push(neighbor);
+      console.log(neighbor);
     }
     return topKpatients;
   }
