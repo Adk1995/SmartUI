@@ -11,7 +11,8 @@
 
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-
+    <script type="text/javascript" src="src/js/model/patientModel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -23,9 +24,10 @@
     <link rel="stylesheet" href="src/css/tabletLayout.css">
     <link rel="stylesheet" href="src/css/laptopLayout.css">
     <link rel="stylesheet" href="src/css/controls.css">
+    <script type="text/javascript" src="src/main.js"></script>
 
-    <script type="text/javascript" src="src/js/controller/inputFillController.js"></script>
-    <script type="text/javascript" src="src/js/controller/validateFormController.js"></script>
+    <!-- <script type="text/javascript" src="src/js/controller/inputFillController.js"></script>
+    <script type="text/javascript" src="src/js/controller/validateFormController.js"></script> -->
 
   </head>
   <body>
@@ -41,28 +43,28 @@
                 <option>N/A</option>
               </select>
               <label>Age</label>
-                <input type="text" name="age" placeholder="Age">
+                <input type="text" name="Age at Diagnosis (Calculated)" placeholder="Age">
               <label>Gender</label>
-                <input type="radio" name="gender" value="Male">Male
-                <input type="radio" name="gender" value="Female">Female
+                <input type="radio" name="Gender" value="Male">Male
+                <input type="radio" name="Gender" value="Female">Female
               <label>Race</label>
-                <input type="text" name="race" placeholder="Race">
+                <input type="text" name="Race" placeholder="Race">
               <label>Aspiration</label>
-                <input type="radio" name="aspirationPreTherapy" value="Y">Yes
-                <input type="radio" name="aspirationPreTherapy" value="N">No
+                <input type="radio" name="Aspiration rate Pre-therapy" value="Y">Yes
+                <input type="radio" name="Aspiration rate Pre-therapy" value="N">No
               <label>HPV/P16</label>
-                <input type="text" name="HPV" placeholder="HPV/P16">
+                <input type="text" name="HPV/P16 status" placeholder="HPV/P16">
               <label>ECOG Value</label>
-                <input type="radio" name="ecogValue" value="0">0
-                <input type="radio" name="ecogValue" value="1">1
-                <input type="radio" name="ecogValue" value="2">2
-                <input type="radio" name="ecogValue" value="3">3
+                <input type="radio" name="ecog" value="0">0
+                <input type="radio" name="ecog" value="1">1
+                <input type="radio" name="ecog" value="2">2
+                <input type="radio" name="ecog" value="3">3
               <label>Smoking Status</label>
-                <input type="radio" name="smokingStatus" value="Never">Never
-                <input type="radio" name="smokingStatus" value="Formar">Former
-                <input type="radio" name="smokingStatus" value="Current">Current
+                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never">Never
+                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Formar">Former
+                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current">Current
               <label>Packs/Year</label>
-              <input type="text" name="packsPerDay" placeholder="Packs Per Year">
+              <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year">
               <div>
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
               </div>
@@ -72,37 +74,37 @@
         <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
         <div id="cancerDescriptors" class="collapse">
             <label>Tumor Site</label>
-            <input type="text" name="tumorSite" placeholder="Tumor Site">
+            <input type="text" name="Site" placeholder="Tumor Site">
             <label>Tumor Subsite</label>
-            <input type="text" name="tumorSubsite" placeholder="Tumor Subsite">
+            <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite">
             <label>AJCC 7th Edition</label>
-            <input type="radio" name="ajcc7th" value="I">I
-            <input type="radio" name="ajcc7th" value="II">II
-            <input type="radio" name="ajcc7th" value="III">III
-            <input type="radio" name="ajcc7th" value="IV">IV
+            <input type="radio" name="AJCC 7th edition" value="I">I
+            <input type="radio" name="AJCC 7th edition" value="II">II
+            <input type="radio" name="AJCC 7th edition" value="III">III
+            <input type="radio" name="AJCC 7th edition" value="IV">IV
             <label>AJCC 8th Edition</label>
-            <input type="radio" name="ajcc8th" value="I">I
-            <input type="radio" name="ajcc8th" value="II">II
-            <input type="radio" name="ajcc8th" value="III">III
-            <input type="radio" name="ajcc8th" value="IV">IV
+            <input type="radio" name="AJCC 8th edition" value="I">I
+            <input type="radio" name="AJCC 8th edition" value="II">II
+            <input type="radio" name="AJCC 8th edition" value="III">III
+            <input type="radio" name="AJCC 8th edition" value="IV">IV
             <label>T-category</label>
-            <input type="radio" name="tCategory" value="T1">T1
-            <input type="radio" name="tCategory" value="T2">T2
-            <input type="radio" name="tCategory" value="T3">T3
-            <input type="radio" name="tCategory" value="T4">T4
+            <input type="radio" name="T-category" value="T1">T1
+            <input type="radio" name="T-category" value="T2">T2
+            <input type="radio" name="T-category" value="T3">T3
+            <input type="radio" name="T-category" value="T4">T4
             <label>N-Category</label>
-            <input type="radio" name="nCategory" value="N/A">N/A
-            <input type="radio" name="nCategory" value="N0">N0
-            <input type="radio" name="nCategory" value="N1">N1
-            <input type="radio" name="nCategory" value="N2">N2
-            <input type="radio" name="nCategory" value="N3">N3
+            <input type="radio" name="N-category" value="N/A">N/A
+            <input type="radio" name="N-category" value="N0">N0
+            <input type="radio" name="N-category" value="N1">N1
+            <input type="radio" name="N-category" value="N2">N2
+            <input type="radio" name="N-category" value="N3">N3
             <label>Pathological Grade</label>
-            <input type="radio" name="pathologicalGrade" value="I">I
-            <input type="radio" name="pathologicalGrade" value="II">II
-            <input type="radio" name="pathologicalGrade" value="III">III
-            <input type="radio" name="pathologicalGrade" value="IV">IV
+            <input type="radio" name="Pathological Grade" value="I">I
+            <input type="radio" name="Pathological Grade" value="II">II
+            <input type="radio" name="Pathological Grade" value="III">III
+            <input type="radio" name="Pathological Grade" value="IV">IV
             <label>Affected Lymph Nodes</label>
-            <input type="text" name="leftLymphNodes" placeholder="Affected Lymph Node">
+            <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node">
             <div>
               <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
             </div>
@@ -113,24 +115,24 @@
       <div id="treatment" class="collapse">
           <div class="left">
               <label>Chemotherapy</label>
-              <input type="text" name="chemoTherapy" placeholder="Chemotherapy">
+              <input type="text" name="Therapeutic combination" placeholder="Chemotherapy">
               <label>Local Therapy</label>
-              <input type="text" name="localTherapy" placeholder="Local Therapy">
+              <input type="text" name="Local_Therapy" placeholder="Local Therapy">
               <label>Treatment Duration</label>
-              <input type="text" name="treatmentDuration" placeholder="Duration">
+              <input type="text" name="Treatment duration (Days)" placeholder="Duration">
               <label>Total Dose</label>
-              <input type="text" name="totalDose" placeholder="Total Dose">
+              <input type="text" name="Total dose" placeholder="Total Dose">
             </div>
             <div class="right">
               <label>Total Fraction</label>
-              <input type="text" name="totalFraction" placeholder="Total Fraction">
+              <input type="text" name="Total fractions" placeholder="Total Fraction">
               <label>Dose/Day</label>
-              <input type="text" name="dosePerDay" placeholder="Dose Per Day">
+              <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day">
               <label>Neck Dissection after IMRT</label>
-              <input type="text" name="neckDissection" placeholder="Neck Dissection">
+              <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection">
               <label>Neck Boost</label>
-              <input type="radio" name="neckBoost" value="Y">Yes
-              <input type="radio" name="neckBoost" value="N">No
+              <input type="radio" name="Neck boost (Y/N)" value="Y">Yes
+              <input type="radio" name="Neck boost (Y/N)" value="N">No
           </div>
       </div>
       </div>
