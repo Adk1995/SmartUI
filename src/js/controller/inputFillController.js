@@ -10,7 +10,7 @@ let InputFillController = function () {
   };
 
   function populatePatientDropdown() {
-
+    let i=0;
     let patients = App.models.patient.getPatients();
 
     for(let patient in patients)
@@ -18,7 +18,7 @@ let InputFillController = function () {
 
       let id = d3.select(".idSelect")
                 .append("option")
-                .attr("value",patients[patient]["Dummy ID"])
+                .attr("value",i++)
                 .text(patients[patient]["Dummy ID"]);
     }
 
@@ -32,12 +32,49 @@ let InputFillController = function () {
                                                     .node()
                                                     .value;
                                 self.currentPatient = selectedID;
-                                console.log(selectedID);
+                                updateSelectedPatient();
+                                updateDataFields();
                               });
+
+  }
+
+  function updateSelectedPatient()
+  {
+    App.models.applicationState.setSelectedPatientID(self.currentPatient);
+
+
+  }
+  function updateDataFields()
+  {
+    let selectedPatient = App.models.patient.getPatients();
+    selectedPatient = selectedPatient[self.currentPatient];
+    let elementSelect = ["#demographics","#cancerDescriptors","#treatment > div.left","#treatment > div.right"];
+    //Update demographics text
+
+    for(let i=0;i<4;i++)
+    {
+
+      $(elementSelect[i]).children("input[type=text]").each(function()
+      {
+        $(this).val(selectedPatient[$(this).attr('name')]);
+
+      });
+
+      $(elementSelect[i]).children("input[type=radio]").each(function()
+      {
+
+        if($(this).attr('value')===selectedPatient[$(this).attr('name')])
+        {
+          $(this).prop('checked',true);
+        }
+      });
+    }
+
   }
 
   return{
     populatePatientDropdown,
     selectPatient
   }
+
 }

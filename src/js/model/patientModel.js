@@ -64,6 +64,7 @@ let PatientModel = function() {
     let otherPatients = [];
     let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
     let subjectID = App.models.applicationState.getSelectedPatientID();
+
     //Patient Attributes to be changes to include everything
     let patientAttributes = App.demographicAttributes;
     let excludedAttributes = App.models.applicationState.getExcludedAttributes();
@@ -91,7 +92,7 @@ let PatientModel = function() {
       let neighbor = self.patients[sortedPatients[i].id];
       neighbor.score = sortedPatients[i].score;
       topKpatients.push(neighbor);
-      console.log(neighbor);
+      
     }
     return topKpatients;
   }

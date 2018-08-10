@@ -48,8 +48,10 @@ var App = App || {};
 
   App.init=function() {
     App.models.patient.loadPatients().then(function(){
-      console.log(App.controllers.patientSelector.populatePatientDropdown());
+
+      App.controllers.patientSelector.populatePatientDropdown();
       App.controllers.patientSelector.selectPatient(".idSelect");
+      
     })
     .catch(function(err) {
               console.log("Promise Error", err);
