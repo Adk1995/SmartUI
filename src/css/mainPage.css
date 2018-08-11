@@ -1,0 +1,21 @@
+body{
+  background: #ECE9E6;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #000000;
+  font-family: 'Raleway', sans-serif;
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+  height:100%;
+}
+.title{
+  text-align: center;
+}
+.Nomogram{
+  height: 500px;
+}
+#demoNomogram{
+  width: 100%;
+  height: 300px;
+}
