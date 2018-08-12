@@ -46,4 +46,10 @@ let NomogramOptions = function(targetID) {
   {
     console.log(filterAxes);
   }
+
+  return{
+    adjustAxes,
+    attributeFilter,
+    init
+  }
 }
