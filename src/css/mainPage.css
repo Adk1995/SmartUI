@@ -7,15 +7,14 @@ body{
   align: center;
   margin-left: auto;
   margin-right: auto;
-  height:100%;
 }
 .title{
   text-align: center;
 }
-.Nomogram{
-  height: 500px;
+#Hello{
+  height: 100px;
 }
-#demoNomogram{
-  width: 100%;
+
+#demoNomogram > *{
   height: 300px;
 }

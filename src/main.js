@@ -77,7 +77,7 @@ var App = App || {};
                               {
                                 name:"Smoking status (Packs/Year)",
                                 rangeShrink: [0.5,0],
-                                domain: [0,180],
+                              //  domain: [0,180],
                                 label: "Packs/Year"
                               },
                               {

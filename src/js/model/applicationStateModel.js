@@ -5,7 +5,7 @@ var App = {} || App;
 let ApplicationStateModel = function() {
   let self = {
     numberOfNeighbors: 5,
-    selectedPatientID: null,
+    selectedPatientID: 0,
     excludedAttributes: [],
     attributeFilters: {},
     selectedAttribute: null
@@ -24,6 +24,7 @@ let ApplicationStateModel = function() {
   }
 
   function getSelectedPatientID() {
+    console.log(self.selectedPatientID);
     return self.selectedPatientID;
   }
 
