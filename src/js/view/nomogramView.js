@@ -33,7 +33,8 @@ let NomogramView = function(targetID) {
     console.log(self.targetID + "Header");
     self.legendSVG = d3.select(self.targetID + "Header").append("svg")
                         .attr("width","100%")
-                        .attr("height",50);
+                        .attr("height",50)
+                        .text("Legend Goes Here");
 
     App.nomogramAxes.forEach(function(axes,i){
       self.axesLabel[i]=axes.label;
@@ -49,16 +50,14 @@ let NomogramView = function(targetID) {
   function createNomogram()
   {
     let patients=App.models.patient.getPatients();
-    console.log(patients);
+    let selectedID = App.models.applicationState.getSelectedPatientID();
     let pat =[];
-    for(let i=0;i<10;i++)
+    for(let i=0;i<644;i++)
     {
       pat[i]=patients[i];
 
     }
-    console.log(typeof(pat[0]["Age at Diagnosis (Calculated)"]));
-
-    console.log(self.targetID);
+    pat.push(patients[selectedID]);
     self.nomogram = new Nomogram()
                         .target(self.targetID)
                         .setAxes(App.nomogramAxes,"reduce","shrinkAxis")
@@ -91,7 +90,6 @@ let NomogramView = function(targetID) {
     let selectedPatientID = App.models.applicationState.getSelectedPatientID();
     let patients = App.models.patient.getPatients();
 
-    console.log(patients[selectedPatientID]["Dummy ID"]);
     if(d["Dummy ID"]===patients[selectedPatientID]["Dummy ID"])
     {
         return "#000000";
@@ -107,21 +105,21 @@ let NomogramView = function(targetID) {
 
   function strokeWidth(d)
   {
-    console.log("Hello");
+
+    let mostSimilarPatients = App.models.patient.calculateSimilarPatients();
+    let selectedID = App.models.applicationState.getSelectedPatientID();
     let patients = App.models.patient.getPatients();
-    let selectedPatientID = App.models.applicationState.getSelectedPatientID();
-
-  for(let i=0;i<15;i++)
-  { console.log(patients[i]["Dummy ID"]);
-    if(Number(d["Dummy ID"])===Number(patients[i]["Dummy ID"]))
+    mostSimilarPatients.push(patients[selectedID]);
+    for(let i=0;i<mostSimilarPatients.length; i++)
     {
-      if(d["Dummy ID"]===patients[selectedPatientID]["Dummy ID"])
-        return 4;
-        console.log("Good morning");
-      return 2;
+      if(d["Dummy ID"]===mostSimilarPatients[i]["Dummy ID"])
+      {
+        if(d["Dummy ID"]===patients[selectedID]["Dummy ID"])
+          return 4;
+        else
+          return 2;
+      }
     }
-  }
     return 0;
-
 }
 }

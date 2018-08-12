@@ -24,6 +24,7 @@ let PatientModel = function() {
                           self.patients[i] = d;
                           self.patients[i]["Age at Diagnosis (Calculated)"] = Number(self.patients[i]["Age at Diagnosis (Calculated)"]);
                           self.patients[i]["OS (Calculated)"] = Number(self.patients[i]["OS (Calculated)"]);
+                          self.patients[i]["Smoking status (Packs/Year)"] = Number(self.patients[i]["Smoking status (Packs/Year)"]);
                         });
                         calculatePatientAttributeDomains();
                         resolve();
@@ -67,6 +68,7 @@ let PatientModel = function() {
 
     //Patient Attributes to be changes to include everything
     let patientAttributes = App.demographicAttributes;
+
     let excludedAttributes = App.models.applicationState.getExcludedAttributes();
 
     let attributesSelected = _.difference(patientAttributes,excludedAttributes);
@@ -82,17 +84,16 @@ let PatientModel = function() {
 
       }
     }
-    console.log(attributesSelected);
+  //  console.log(attributesSelected);
     let sortedPatients = _.sortBy(otherPatients, ['score']);
     sortedPatients.reverse();
-
     let topKpatients = [];
     for(let i=1; i<=numberOfNeighbors; i++)
     {
       let neighbor = self.patients[sortedPatients[i].id];
       neighbor.score = sortedPatients[i].score;
       topKpatients.push(neighbor);
-      
+
     }
     return topKpatients;
   }
@@ -105,7 +106,14 @@ let PatientModel = function() {
 
       for(let attribute of attributesSelected)
       {
-        if(self.patients[patientID][attribute] === self.patients[subjectID][attribute])
+        if(attribute === "Smoking status (Packs/Year)")
+        {
+          if(Math.abs(self.patients[patientID][attribute]-self.patients[subjectID][attribute])>10)
+          {
+            score-=1;
+          }
+        }
+        else if(self.patients[patientID][attribute] === self.patients[subjectID][attribute])
         {
           score+=1;
         }

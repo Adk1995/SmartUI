@@ -16,8 +16,8 @@ var App = App || {};
                                 "Race",
                                 "HPV/P16 status",
                                 "ecog",
-                                "Smoking status (Packs/Year)",
-                                "OS (Calculated)"];
+                                "Smoking status (Packs/Year)"
+                                ];
 
   App.cancerAttributes = ["Site",
                           "AJCC 7th edition",
@@ -26,8 +26,8 @@ var App = App || {};
                           "N-category",
                           "Pathological Grade",
                           "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
-                          "Affected Lymph node cleaned",
-                          "OS (Calculated)"];
+                          "Affected Lymph node cleaned"
+                          ];
 
   App.treatmentAttributes = ["Therapeutic combination",
                               "Local_Therapy",
@@ -39,8 +39,7 @@ var App = App || {};
                               "Neck boost (Y/N)",
                               "OS (Calculated)"];
 
-  App.nomogramAxes =[
-                              {
+  App.nomogramAxes =[         {
                                 name:"Age at Diagnosis (Calculated)",
                                 rangeShrink: [0,1],
                                 domain: [25,90],
@@ -122,6 +121,7 @@ var App = App || {};
       App.controllers.patientSelector.populatePatientDropdown();
       App.controllers.patientSelector.selectPatient(".idSelect");
       App.views.nomogram = new NomogramView("#demoNomogram");
+      App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
 
     })
     .catch(function(err) {
