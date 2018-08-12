@@ -52,15 +52,17 @@ let NomogramView = function(targetID) {
     let patients=App.models.patient.getPatients();
     let selectedID = App.models.applicationState.getSelectedPatientID();
     let pat =[];
+    let attributes=getAttributes();
     for(let i=0;i<644;i++)
     {
       pat[i]=patients[i];
 
     }
     pat.push(patients[selectedID]);
+    d3.select(self.targetID).selectAll("svg").remove();
     self.nomogram = new Nomogram()
                         .target(self.targetID)
-                        .setAxes(App.nomogramAxes,"reduce","shrinkAxis")
+                        .setAxes(attributes,"reduce","shrinkAxis")
                         .data(pat)
                         .margins({
                           top: 5,
@@ -84,7 +86,6 @@ let NomogramView = function(targetID) {
 
 
   }
-
   function selectColor(d)
   {
     let selectedPatientID = App.models.applicationState.getSelectedPatientID();
@@ -121,5 +122,35 @@ let NomogramView = function(targetID) {
       }
     }
     return 0;
+}
+function getAttributes()
+{
+  let axes = App.nomogramAxes;
+  let excluded=App.models.applicationState.getExcludedAttributes();
+
+  console.log("Helloo",excluded);
+  let temp = [];
+  App.nomogramAxes.forEach(function(d)
+  {
+    excluded.forEach(function(excludedVariable){
+
+      if(excludedVariable===d.name)
+      {
+        temp.push(d);
+
+        axes = _.difference(App.nomogramAxes,temp);
+        console.log(axes);
+      }
+    });
+  });
+  return axes;
+}
+
+return{
+  createNomogram,
+  getAttributes,
+  strokeWidth,
+  selectColor,
+  init
 }
 }

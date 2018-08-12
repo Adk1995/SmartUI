@@ -4,7 +4,7 @@ var App = {} || App;
 
 let ApplicationStateModel = function() {
   let self = {
-    numberOfNeighbors: 10,
+    numberOfNeighbors: 5,
     selectedPatientID: 300,
     excludedAttributes: [],
     attributeFilters: {},

@@ -121,8 +121,8 @@ var App = App || {};
       App.controllers.patientSelector.populatePatientDropdown();
       App.controllers.patientSelector.selectPatient(".idSelect");
       App.views.nomogram = new NomogramView("#demoNomogram");
+      console.log(App.views.nomogram);
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
-
     })
     .catch(function(err) {
               console.log("Promise Error", err);

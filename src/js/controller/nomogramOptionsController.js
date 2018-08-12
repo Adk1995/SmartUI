@@ -31,7 +31,7 @@ let NomogramOptions = function(targetID) {
                   .attr("style","margin-left: 15px;margin-right:15px;")
                   .property("checked","true")
                   .on("change",function(d){
-                    attributeFilter(this.name);
+                    attributeFilter(this);
                   });
       radioButton.append("label").text(" "+d.label);
 
@@ -42,9 +42,43 @@ let NomogramOptions = function(targetID) {
   {
     console.log(axesSelected);
   }
-  function attributeFilter(filterAxes)
+  function attributeFilter(checkbox)
   {
-    console.log(filterAxes);
+    let excluded = App.models.applicationState.getExcludedAttributes();
+    console.log(checkbox);
+    if($(checkbox).prop("checked")===false)
+    {
+      let s = (checkbox.name).replace("filterDemo",'');
+      console.log(s);
+      App.nomogramAxes.forEach(function(d){
+        if(s===d.label)
+        {
+          excluded.push(d.name);
+          excluded = _.uniq(excluded);
+          console.log(excluded);
+        }
+      });
+    }
+
+    else
+    {
+      console.log(checkbox.name);
+
+      App.nomogramAxes.forEach(function(d){
+        if(checkbox.name==="filterDemo"+d.label)
+        {
+          let temp = [];
+          temp[0] = d.name;
+          console.log(d.name);
+          let array = _.difference(excluded,temp);
+          excluded = array;
+          excluded = _.uniq(excluded);
+          console.log(excluded);
+        }
+      });
+    }
+    App.models.applicationState.setExcludedAttributes(excluded);
+    App.views.nomogram.createNomogram();
   }
 
   return{
