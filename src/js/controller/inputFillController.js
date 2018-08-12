@@ -41,8 +41,6 @@ let InputFillController = function () {
   function updateSelectedPatient()
   {
     App.models.applicationState.setSelectedPatientID(self.currentPatient);
-
-
   }
   function updateDataFields()
   {

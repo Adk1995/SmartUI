@@ -25,3 +25,7 @@
 #nomogramOptions > * {
   font-size: 10px;
 }
+
+#axisSlider{
+  margin-top: 0px;
+}

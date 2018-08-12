@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="src/css/tabletLayout.css">
     <link rel="stylesheet" href="src/css/laptopLayout.css">
     <link rel="stylesheet" href="src/css/controls.css">
+    <script type="text/javascript" src="src/js/controller/sliderController.js"></script>
     <script type="text/javascript" src="src/js/controller/nomogramOptionsController.js"></script>
     <script type="text/javascript" src="src/js/model/applicationStateModel.js"></script>
     <script type="text/javascript" src="src/js/controller/inputFillController.js"></script>
@@ -61,7 +62,10 @@
             <div class="col-sm-12">
               <button type="button btn" name="button" style="float: left;margin-bottom:20px;" onclick="toggleDemoOptions()">Settings</button>
             </div>
-              <div id="nomogramOptions">
+              <div id="nomogramOptions" class="col-lg-9">
+              </div>
+              <div class="col-sm-3" id="axisSlider">
+
               </div>
           </div>
 

@@ -122,7 +122,9 @@ var App = App || {};
       App.controllers.patientSelector.selectPatient(".idSelect");
       App.views.nomogram = new NomogramView("#demoNomogram");
       console.log(App.views.nomogram);
+
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
+      App.controllers.axisControl = new AxisSlider();
     })
     .catch(function(err) {
               console.log("Promise Error", err);

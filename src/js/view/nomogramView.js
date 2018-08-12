@@ -82,9 +82,13 @@ let NomogramView = function(targetID) {
                         .onMouseOver("hide-other")
                         .onMouseOut("reset-paths");
                         console.log(self.nomogram);
-                        self.nomogram.draw();
+                        drawNomogram();
 
 
+  }
+  function drawNomogram()
+  {
+    self.nomogram.draw();
   }
   function selectColor(d)
   {
@@ -151,6 +155,7 @@ return{
   getAttributes,
   strokeWidth,
   selectColor,
-  init
+  init,
+  drawNomogram
 }
 }

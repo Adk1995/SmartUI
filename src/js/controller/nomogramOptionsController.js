@@ -4,7 +4,8 @@ let NomogramOptions = function(targetID) {
 
   let self = {
     targetID: null,
-    options: null
+    options: null,
+    currentSelectedRadio: null
   }
   init();
 
@@ -18,7 +19,7 @@ let NomogramOptions = function(targetID) {
                   .attr("type","radio")
                   .attr("name","toggleDemo")
                   .attr("value",d.label)
-                  .attr("style","margin-left:30px; margin-right:15px;")
+                  .attr("style","margin-left:0px;")
                   .on("change",function(d){
                     adjustAxes(this.value);
                   });
@@ -28,7 +29,7 @@ let NomogramOptions = function(targetID) {
                   .attr("type","checkbox")
                   .attr("name","filterDemo"+d.label)
                   .attr("value",d.label)
-                  .attr("style","margin-left: 15px;margin-right:15px;")
+                  .attr("style","margin-left: 15px;")
                   .property("checked","true")
                   .on("change",function(d){
                     attributeFilter(this);
@@ -40,7 +41,15 @@ let NomogramOptions = function(targetID) {
 
   function adjustAxes(axesSelected)
   {
-    console.log(axesSelected);
+    let attributes = App.nomogramAxes;
+    console.log(attributes);
+    attributes.forEach(function(d){
+      if(axesSelected===d.label)
+      {
+        self.currentSelectedRadio = axesSelected;
+        console.log(self.currentSelectedRadio);
+      }
+    });
   }
   function attributeFilter(checkbox)
   {
@@ -80,10 +89,14 @@ let NomogramOptions = function(targetID) {
     App.models.applicationState.setExcludedAttributes(excluded);
     App.views.nomogram.createNomogram();
   }
-
+  function getSelectedRadio()
+  {
+    return self.currentSelectedRadio;
+  }
   return{
     adjustAxes,
     attributeFilter,
-    init
+    init,
+    getSelectedRadio
   }
 }
