@@ -109,11 +109,45 @@ var App = App || {};
                               }
                             ];
 
+                            
+  App.aspirationAxes = [      {
+                                name:"Age at Diagnosis (Calculated)",
+                                rangeShrink: [0,1],
+                                domain: [25,90],
+                                label: "AgeAtTx"
+                              },
+                              {
+                                name:"Aspiration rate Pre-therapy",
+                                rangeShrink: [0,0.2],
+                                label: "Pre-Aspiration"
+                              },
+                              {
+                                name:"Aspiration rate Post-therapy",
+                                rangeShrink: [0,0.2],
+                                label: "Post-Aspiration"
+                              },
+                              {
+                                name:"Aspiration type",
+                                rangeShrink: [0,1],
+                                label: "Aspiration Type"
+                              },
+                              {
+                                name:"Aspiration rate(Y/N)",
+                                rangeShrink: [0,0.2],
+                                label: "Aspiration rate"
+                              },
+                              {
+                                name: "OS (Calculated)",
+                                label: "OS",
+                                rangeShrink: [0,1],
+                                domain: [0,130]
+                              }];
+  App.dysphasiaAxes = [];
   App.models.patient=new PatientModel();
   App.models.applicationState = new ApplicationStateModel();
 
   App.controllers.patientSelector = new InputFillController();
-
+  App.controllers.nomogramSelector = new NomogramSelector();
 
   App.init=function() {
     App.models.patient.loadPatients().then(function(){
@@ -121,10 +155,11 @@ var App = App || {};
       App.controllers.patientSelector.populatePatientDropdown();
       App.controllers.patientSelector.selectPatient(".idSelect");
       App.views.nomogram = new NomogramView("#demoNomogram");
-      console.log(App.views.nomogram);
 
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
       App.controllers.axisControl = new AxisSlider();
+      App.controllers.nomogramSelector.init();
+
     })
     .catch(function(err) {
               console.log("Promise Error", err);
@@ -133,4 +168,8 @@ var App = App || {};
   };
 
 })();
+function changeNomogram(d)
+{
+  console.log($(this).val());
+}
 window.addEventListener("load",App.init,false);

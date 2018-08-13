@@ -70,7 +70,7 @@ let AxisSlider = function() {
 
   function updateAxes()
   {
-    let attributes = App.nomogramAxes;
+    let attributes = App.controllers.nomogramSelector.getSelectedAttributes();
     let selectedRadio = App.controllers.nomogram.getSelectedRadio();
     console.log(selectedRadio);
     attributes.forEach(function(d){
@@ -80,7 +80,7 @@ let AxisSlider = function() {
         d.rangeShrink[1] = self.top;
       }
     });
-    App.views.nomogram.createNomogram();
+    App.views.nomogram.updateAxes();
   }
   return{
     brushed,

@@ -12,7 +12,9 @@ let NomogramOptions = function(targetID) {
   function init()
   {
     let selectedRadio;
-    App.nomogramAxes.forEach(function(d){
+    let attributes = App.controllers.nomogramSelector.getSelectedAttributes();
+    d3.select("#nomogramOptions").selectAll("*").remove();
+    attributes.forEach(function(d){
       let radioButton = d3.select("#nomogramOptions").append("div")
       radioButton.append("input")
                   .attr("class","demoRadio")
@@ -41,8 +43,8 @@ let NomogramOptions = function(targetID) {
 
   function adjustAxes(axesSelected)
   {
-    let attributes = App.nomogramAxes;
-    console.log(attributes);
+    let attributes = App.controllers.nomogramSelector.getSelectedAttributes();
+
     attributes.forEach(function(d){
       if(axesSelected===d.label)
       {
@@ -55,11 +57,12 @@ let NomogramOptions = function(targetID) {
   {
     let excluded = App.models.applicationState.getExcludedAttributes();
     console.log(checkbox);
+    let attributes = App.controllers.nomogramSelector.getSelectedAttributes();
     if($(checkbox).prop("checked")===false)
     {
       let s = (checkbox.name).replace("filterDemo",'');
       console.log(s);
-      App.nomogramAxes.forEach(function(d){
+      attributes.forEach(function(d){
         if(s===d.label)
         {
           excluded.push(d.name);
@@ -73,7 +76,7 @@ let NomogramOptions = function(targetID) {
     {
       console.log(checkbox.name);
 
-      App.nomogramAxes.forEach(function(d){
+      attributes.forEach(function(d){
         if(checkbox.name==="filterDemo"+d.label)
         {
           let temp = [];
@@ -87,7 +90,7 @@ let NomogramOptions = function(targetID) {
       });
     }
     App.models.applicationState.setExcludedAttributes(excluded);
-    App.views.nomogram.createNomogram();
+    App.views.nomogram.updateAxes();
   }
   function getSelectedRadio()
   {

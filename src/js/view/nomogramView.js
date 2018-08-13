@@ -86,6 +86,13 @@ let NomogramView = function(targetID) {
 
 
   }
+  function updateAxes()
+  {
+    console.log("Hello");
+    let attributes=getAttributes();
+    self.nomogram.setAxes(attributes,"reduce","shrinkAxis");
+    drawNomogram();
+  }
   function drawNomogram()
   {
     self.nomogram.draw();
@@ -129,12 +136,13 @@ let NomogramView = function(targetID) {
 }
 function getAttributes()
 {
-  let axes = App.nomogramAxes;
+  let selectedAttributes = App.controllers.nomogramSelector.getSelectedAttributes();
+  let axes = selectedAttributes;
   let excluded=App.models.applicationState.getExcludedAttributes();
 
-  console.log("Helloo",excluded);
+  console.log(selectedAttributes,App.nomogramAxes);
   let temp = [];
-  App.nomogramAxes.forEach(function(d)
+  selectedAttributes.forEach(function(d)
   {
     excluded.forEach(function(excludedVariable){
 
@@ -142,7 +150,7 @@ function getAttributes()
       {
         temp.push(d);
 
-        axes = _.difference(App.nomogramAxes,temp);
+        axes = _.difference(selectedAttributes,temp);
         console.log(axes);
       }
     });
@@ -156,6 +164,7 @@ return{
   strokeWidth,
   selectColor,
   init,
-  drawNomogram
+  drawNomogram,
+  updateAxes
 }
 }
