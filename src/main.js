@@ -159,13 +159,17 @@ var App = App || {};
                                 rangeShrink: [0,1],
                                 domain: [0,200]
                               }];
-  App.models.patient=new PatientModel();
-  App.models.applicationState = new ApplicationStateModel();
 
-  App.controllers.patientSelector = new InputFillController();
-  App.controllers.nomogramSelector = new NomogramSelector();
 
   App.init=function() {
+
+    App.models.patient=new PatientModel();
+    App.models.applicationState = new ApplicationStateModel();
+    App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
+
+    App.controllers.patientSelector = new InputFillController();
+    App.controllers.nomogramSelector = new NomogramSelector();
+
     App.models.patient.loadPatients().then(function(){
 
       App.controllers.patientSelector.populatePatientDropdown();
@@ -180,6 +184,7 @@ var App = App || {};
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
       App.controllers.axisControl = new AxisSlider();
       App.controllers.nomogramSelector.init();
+      App.models.kaplanMeierPatient.initPatients(App.models.patient.getPatients(),App.demographicAttributes[3]);
 
     })
     .catch(function(err) {

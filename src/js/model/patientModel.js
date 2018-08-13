@@ -58,6 +58,7 @@ let PatientModel = function() {
     self.attributeDomains["Smoking status (Packs/Year)"] = [0,150];
     self.attributeDomains["ecog"] = ["0","1","2","3"];
     console.log(self.attributeDomains);
+    return self.attributeDomains;
   }
 
   function calculateSimilarPatients()
@@ -68,8 +69,7 @@ let PatientModel = function() {
 
     //Patient Attributes to be changes to include everything
     let patientAttributes= App.demographicAttributes;
-    patientAttributes = patientAttributes.concat(App.cancerAttributes);
-    console.log(patientAttributes)
+        patientAttributes = patientAttributes.concat(App.cancerAttributes);
     let excludedAttributes = App.models.applicationState.getExcludedAttributes();
 
     let attributesSelected = _.difference(patientAttributes,excludedAttributes);
