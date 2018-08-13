@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="src/css/laptopLayout.css">
     <link rel="stylesheet" href="src/css/controls.css">
 
+    <script src="src/js/view/KaplanMeierView.js" charset="utf-8"></script>
     <script type="text/javascript" src="src/js/controller/kaplanMeierOptionsController.js"></script>
     <script type="text/javascript" src="src/js/controller/nomogramSelector.js"></script>
     <script type="text/javascript" src="src/js/controller/sliderController.js"></script>
@@ -80,10 +81,16 @@
       </div>
 
       <div id="kaplanMeierSelector" class="row">
-        <select id="kaplanOptions">
+        <div class="col-md-4">
+          <select id="kaplanOptions">
 
-        </select>
+          </select>
+        </div>
+        <div class="col-md-8">
+          <div id="kaplanMeier">
 
+          </div>
+        </div>
       </div>
     </div>
   </body>

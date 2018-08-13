@@ -159,7 +159,7 @@ var App = App || {};
                                 rangeShrink: [0,1],
                                 domain: [0,200]
                               }];
-
+App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
   App.init=function() {
 
@@ -187,6 +187,8 @@ var App = App || {};
       App.controllers.kaplanOptions = new KaplanMeierOptions("#kaplanOptions");
       App.controllers.kaplanOptions.selectOption("#kaplanOptions");
 
+
+      App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
     })
     .catch(function(err) {
               console.log("Promise Error", err);
