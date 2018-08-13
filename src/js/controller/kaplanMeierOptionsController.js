@@ -15,16 +15,15 @@ let KaplanMeierOptions = function(targetID){
   }
   function populateDropdown()
   {
-    let attributes=App.demographicAttributes;
+    let attributes=App.models.patient.getAttributeNames();
     console.log(attributes);
+    let excludedAttributes = ["Age at Diagnosis (Calculated)","Affected Lymph node cleaned","Smoking status at Diagnosis (Never/Former/Current)"];
+    attributes = _.difference(attributes,excludedAttributes);
     attributes.forEach(function(d){
-      if(d!="Age at Diagnosis (Calculated)")
-      {
         let id = d3.select(targetID)
                   .append("option")
                   .attr("value",d)
                   .text(d);
-      }
     });
 
   }

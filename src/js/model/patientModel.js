@@ -6,7 +6,8 @@ let PatientModel = function() {
 
   let self = {
     patients: {},
-    attributeDomains: {}
+    attributeDomains: {},
+    attributeNames: []
   };
   function loadPatients() {
     let dataFile = "data/AnonymousNewData1.csv";
@@ -44,8 +45,11 @@ let PatientModel = function() {
   function calculatePatientAttributeDomains()
   {
     let patientObjArray = Object.values(self.patients);
-
-    for(let attribute of App.demographicAttributes) {
+    let attributeList = App.demographicAttributes;
+    attributeList=attributeList.concat(App.cancerAttributes);
+    console.log(attributeList);
+    self.attributeNames = attributeList;
+    for(let attribute of attributeList) {
       let attribute_valueArray = patientObjArray.map(function(o){
                 return o[attribute];
       });
@@ -118,11 +122,16 @@ let PatientModel = function() {
   {
     return self.attributeDomains;
   }
+  function getAttributeNames()
+  {
+    return self.attributeNames;
+  }
   return {
     loadPatients,
     getPatients,
     getPatientAttributeDomains,
     calculateSimilarPatients,
-    calculatePatientAttributeDomains
+    calculatePatientAttributeDomains,
+    getAttributeNames
   };
 }
