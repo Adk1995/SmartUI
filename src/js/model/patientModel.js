@@ -5,7 +5,7 @@ var App = App || {};
 let PatientModel = function() {
 
   let self = {
-    patients: {},
+    patients: [],
     attributeDomains: {},
     attributeNames: []
   };

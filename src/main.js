@@ -163,6 +163,8 @@ App.category10colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
 "#393b79", "#637939", "#7f7f7f", "#bcbd22", "#843c39"];
 
 App.attributeColors = d3.scaleOrdinal(App.category10colors);
+App.cohortVariables = ["Dummy ID","Tm Laterality (R/L)","Affected Lymph nodes","Treatment duration (Days)","Dose/fraction (Gy)","ROI"];
+
 
   App.init=function() {
 
@@ -192,11 +194,15 @@ App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
 
       App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-      /*
 
-      */
+      App.models.kaplanMeierPatient.initPatients(App.models.patient.getPatients(),App.demographicAttributes[1]);
+      let maxOS = App.models.kaplanMeierPatient.getMaxOS();
+      App.views.kaplanMeier.setMaxOS(maxOS);
+      let x=App.models.kaplanMeierPatient.getKaplanMeierPatients();
+      let a = App.views.kaplanMeier.update(x);
 
-      
+      App.views.cohort = new CohortView();
+
       //
     })
     .catch(function(err) {

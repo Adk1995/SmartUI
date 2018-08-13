@@ -22,10 +22,7 @@
 .side{
   width: 100%;
 }
-#nomogramOptions > * {
-  background: #23fa45;
-  font-size: 10px;
-}
+
 
 #axisSlider{
   margin-top: 0px;

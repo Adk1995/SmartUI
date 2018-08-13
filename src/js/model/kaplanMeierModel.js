@@ -83,7 +83,6 @@ let KaplanMeierPatientModel = function(){
       sortedOSKeys.sort(function(a,b){
         return Number(a)-Number(b);
       });
-      console.log(sortedOSKeys,"Bye");
 
     let probAtOS = []; // [{OS, prob, variance}, {OS, ...}, ...]
     let previousProb = 1;

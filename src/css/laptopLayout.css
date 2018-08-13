@@ -80,8 +80,32 @@
   display:inline-block;
   width:100%;
 }
-
+#nomogramOptions{
+  height: 150px;
+}
 #nomogramOptions >*{
+  margin-left: 15px;
   font-size: 10px;
+}
+
+#settingsButton{
+  margin-left: 120px;
+  float: center;
+}
+#kaplanMeier{
+  margin-top: 20px;
+}
+h5{
+  text-align: center;
+}
+#nomogramType{
+  margin-left: 110px;
+  margin-right: 150px;
+}
+#cohortAnalysis{
+  margin-left: 100px;
+}
+table, th, td {
+    border: 1px solid black;
 }
 }

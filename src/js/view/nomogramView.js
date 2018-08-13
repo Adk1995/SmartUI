@@ -31,10 +31,10 @@ let NomogramView = function(targetID) {
     self.targetID = targetID;
     self.targetElement = d3.select(targetID);
     console.log(self.targetID + "Header");
-    self.legendSVG = d3.select(self.targetID + "Header").append("svg")
-                        .attr("width","100%")
-                        .attr("height",50)
-                        .text("Legend Goes Here");
+    // self.legendSVG = d3.select(self.targetID + "Header").append("svg")
+    //                     .attr("width",300)
+    //                     .attr("height",50)
+    //                     .text("Legend Goes Here");
 
     App.nomogramAxes.forEach(function(axes,i){
       self.axesLabel[i]=axes.label;
@@ -106,7 +106,6 @@ let NomogramView = function(targetID) {
     {
         return "#000000";
     }
-
     else if(d["Gender"]=="Male"){
       return "#c9c95d";
     }

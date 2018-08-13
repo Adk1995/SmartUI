@@ -89,6 +89,7 @@ let KaplanMeierView = function(targetID){
       for (let attrKey of Object.keys(KMData)) {
 
           if (KMData[attrKey].length > 0) {
+              console.log(attrKey);
               console.log(KMData[attrKey]);// have patients in the group
               drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
               drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));

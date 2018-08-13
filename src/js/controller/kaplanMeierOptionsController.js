@@ -17,7 +17,7 @@ let KaplanMeierOptions = function(targetID){
   {
     let attributes=App.models.patient.getAttributeNames();
     console.log(attributes);
-    let excludedAttributes = ["Age at Diagnosis (Calculated)","Affected Lymph node cleaned","Smoking status at Diagnosis (Never/Former/Current)"];
+    let excludedAttributes = ["Age at Diagnosis (Calculated)","Affected Lymph node cleaned","Smoking status (Packs/Year)"];
     attributes = _.difference(attributes,excludedAttributes);
     attributes.forEach(function(d){
         let id = d3.select(targetID)
