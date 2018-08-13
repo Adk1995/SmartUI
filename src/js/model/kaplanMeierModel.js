@@ -75,12 +75,15 @@ let KaplanMeierPatientModel = function(){
 
     let sortedOSKeys = Object.keys(CensorsAtOS).sort((a, b) => parseFloat(a) - parseFloat(b));
 
-    for(let i=0;i<sortedOSKeys.length;i++)
-    {
+
       let temp=[];
       temp[0]="NaN";
       sortedOSKeys=_.difference(sortedOSKeys,temp);
-    }
+
+      sortedOSKeys.sort(function(a,b){
+        return Number(a)-Number(b);
+      });
+      console.log(sortedOSKeys,"Bye");
 
     let probAtOS = []; // [{OS, prob, variance}, {OS, ...}, ...]
     let previousProb = 1;
@@ -110,9 +113,18 @@ let KaplanMeierPatientModel = function(){
       pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
 
     }
+    for(let i=0;i<probAtOS.length;i++)
+    {
+      probAtOS[i].OS = Number(probAtOS[i].OS);
+    }
 
+    probAtOS.sort(function(a,b){
+      return a.OS-b.OS;
+    });
+    console.log(probAtOS);
     if (sortedOSKeys.length > 0) {
       self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
+
     }
 
     self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;

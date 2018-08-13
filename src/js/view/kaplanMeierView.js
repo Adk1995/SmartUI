@@ -17,8 +17,8 @@ let KaplanMeierView = function(targetID){
 
       self.targetSvg = self.targetElement.append("svg")
           .attr("width", self.targetElement.node().clientWidth)
-          .attr("height", self.targetElement.node().clientHeight)
-          .attr("viewBox", "0 0 120 100")
+          .attr("height", self.targetElement.node().clientHeight*2)
+          .attr("viewBox", "0 0 100 100")
           .attr("preserveAspectRatio", "xMidYMin");
 
       drawXAxis();
@@ -82,14 +82,14 @@ let KaplanMeierView = function(targetID){
       let x = d3.scaleLinear()
                 .domain([0, self.maxOS])
                 .range([10, 110]);
-
       let y = d3.scaleLinear()
                 .domain([0, 1])
                 .range([90, 10]);
-
       let attrValNum = 0;
       for (let attrKey of Object.keys(KMData)) {
-          if (KMData[attrKey].length > 0) {  // have patients in the group
+
+          if (KMData[attrKey].length > 0) {
+              console.log(KMData[attrKey]);// have patients in the group
               drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
               drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));
               attrValNum++;
@@ -97,7 +97,7 @@ let KaplanMeierView = function(targetID){
       }
 
       let interval = Math.round(self.maxOS / 100) * 10;
-
+      console.log(interval);
       for (let i = 0; i < self.maxOS; i += interval) {
           self.targetSvg.append("text")
               .attr("class", "yAxisLabels")
@@ -109,8 +109,70 @@ let KaplanMeierView = function(targetID){
       }
 
     }
+
+  function drawKMPlot(data, xScale, yScale, color)
+  {
+    let areaPercent95 = 1.96;
+      console.log(color);
+    for(let j=0; j<data.length-1;j++)
+    {
+      let x1= xScale(data[j].OS);
+      let x2 = xScale(data[j+1].OS);
+      let y1 = yScale(Math.max(0, data[j].prob - areaPercent95 * Math.sqrt(data[j].var)));
+      let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
+
+      self.targetSvg.append("rect")
+          .attr("class", "kmVar")
+          .attr("x", x1)
+          .attr("y", y2)
+          .attr("width", x2 - x1)
+          .attr("height", y1 - y2)
+          .style("stroke", "none")
+          .style("fill", color)
+          .style("opacity", 0.5);
+    }
+
+    let lineData = [{
+            x: xScale(data[0].OS),
+            y: yScale(1)
+        }, {
+            x: xScale(data[0].OS),
+            y: yScale(data[0].prob)
+        }];
+    for (let i = 1; i < data.length; i++) {
+            lineData.push({
+                x: xScale(data[i].OS),
+                y: yScale(data[i - 1].prob)
+            });
+            lineData.push({
+                x: xScale(data[i].OS),
+                y: yScale(data[i].prob)
+            });
+
+        }
+    console.log(lineData);
+    let lineFunc = d3.line()
+            .x(function(d) {
+                return d.x;
+            })
+            .y(function(d) {
+                return d.y;
+            });
+
+    self.targetSvg.append("path")
+        .attr("class", "kmPlots")
+        .attr("d", lineFunc(lineData))
+        .style("stroke", color)
+        .style("stroke-width", "0.8px")
+        .style("fill", "none");
+  }
   function setMaxOS(os)
   {
     self.maxOS = os;
+  }
+  return{
+    setMaxOS,
+    drawKMPlot,
+    update
   }
 }

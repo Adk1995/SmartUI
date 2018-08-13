@@ -159,6 +159,9 @@ var App = App || {};
                                 rangeShrink: [0,1],
                                 domain: [0,200]
                               }];
+App.category10colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+"#393b79", "#637939", "#7f7f7f", "#bcbd22", "#843c39"];
+
 App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
   App.init=function() {
@@ -189,6 +192,12 @@ App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
 
       App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
+      /*
+
+      */
+
+      
+      //
     })
     .catch(function(err) {
               console.log("Promise Error", err);

@@ -39,6 +39,12 @@ let KaplanMeierOptions = function(targetID){
                             .value;
                             console.log(selectedID);
       App.models.kaplanMeierPatient.initPatients(App.models.patient.getPatients(),selectedID);
+      console.log(App.models.kaplanMeierPatient.getMaxOS());
+      let maxOS = App.models.kaplanMeierPatient.getMaxOS();
+      App.views.kaplanMeier.setMaxOS(maxOS);
+      console.log(App.models.kaplanMeierPatient.getKaplanMeierPatients());
+      let x=App.models.kaplanMeierPatient.getKaplanMeierPatients();
+      let a = App.views.kaplanMeier.update(x);
       });
   }
   return{
