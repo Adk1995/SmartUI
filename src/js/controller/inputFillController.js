@@ -32,6 +32,13 @@ let InputFillController = function () {
                                                     .node()
                                                     .value;
                                 self.currentPatient = selectedID;
+                                console.log(self.currentPatient);
+                                console.log(window.location.pathname);
+                                if(window.location.pathname==='/')
+                                {
+                                  localStorage.setItem("Select",self.currentPatient);
+                                }
+                              
                                 updateSelectedPatient();
                                 updateDataFields();
                               });
@@ -40,6 +47,7 @@ let InputFillController = function () {
 
   function updateSelectedPatient()
   {
+
     App.models.applicationState.setSelectedPatientID(self.currentPatient);
   }
   function updateDataFields()

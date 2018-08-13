@@ -5,7 +5,7 @@ var App = {} || App;
 let ApplicationStateModel = function() {
   let self = {
     numberOfNeighbors: 5,
-    selectedPatientID: 300,
+    selectedPatientID: 200,
     excludedAttributes: [],
     attributeFilters: {},
     selectedAttribute: null
@@ -20,6 +20,7 @@ let ApplicationStateModel = function() {
   }
 
   function setSelectedPatientID(subjectID) {
+    
     self.selectedPatientID = subjectID;
   }
 

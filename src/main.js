@@ -105,11 +105,11 @@ var App = App || {};
                                 name: "OS (Calculated)",
                                 label: "OS",
                                 rangeShrink: [0,1],
-                                domain: [0,130]
+                                domain: [0,200]
                               }
                             ];
 
-                            
+
   App.aspirationAxes = [      {
                                 name:"Age at Diagnosis (Calculated)",
                                 rangeShrink: [0,1],
@@ -140,9 +140,25 @@ var App = App || {};
                                 name: "OS (Calculated)",
                                 label: "OS",
                                 rangeShrink: [0,1],
-                                domain: [0,130]
+                                domain: [0,200]
                               }];
-  App.dysphasiaAxes = [];
+  App.dysphasiaAxes = [       {
+                                name:"Age at Diagnosis (Calculated)",
+                                rangeShrink: [0,1],
+                                domain: [25,90],
+                                label: "AgeAtTx"
+                              },
+                              {
+                                name:"Feeding tube 6m",
+                                rangeShrink: [0,0.2],
+                                label: "Feeding Tube"
+                              },
+                              {
+                                name: "OS (Calculated)",
+                                label: "OS",
+                                rangeShrink: [0,1],
+                                domain: [0,200]
+                              }];
   App.models.patient=new PatientModel();
   App.models.applicationState = new ApplicationStateModel();
 
@@ -154,6 +170,11 @@ var App = App || {};
 
       App.controllers.patientSelector.populatePatientDropdown();
       App.controllers.patientSelector.selectPatient(".idSelect");
+      if(!(window.location.pathname==='/'))
+      {
+        App.models.applicationState.setSelectedPatientID(localStorage.getItem("Select"));
+        console.log(App.models.applicationState.getSelectedPatientID());
+      }
       App.views.nomogram = new NomogramView("#demoNomogram");
 
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
