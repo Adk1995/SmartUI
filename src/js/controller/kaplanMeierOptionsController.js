@@ -18,11 +18,13 @@ let KaplanMeierOptions = function(targetID){
     let attributes=App.demographicAttributes;
     console.log(attributes);
     attributes.forEach(function(d){
-
-      let id = d3.select(targetID)
-                .append("option")
-                .attr("value",d)
-                .text(d);
+      if(d!="Age at Diagnosis (Calculated)")
+      {
+        let id = d3.select(targetID)
+                  .append("option")
+                  .attr("value",d)
+                  .text(d);
+      }
     });
 
   }
@@ -38,11 +40,6 @@ let KaplanMeierOptions = function(targetID){
                             console.log(selectedID);
       App.models.kaplanMeierPatient.initPatients(App.models.patient.getPatients(),selectedID);
       });
-      let temp=[];
-      temp[0] = selectedID;
-      console.log(temp);
-
-
   }
   return{
     init,
