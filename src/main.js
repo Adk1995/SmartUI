@@ -184,6 +184,8 @@ var App = App || {};
       App.controllers.nomogram = new NomogramOptions("#nomogramOptions");
       App.controllers.axisControl = new AxisSlider();
       App.controllers.nomogramSelector.init();
+      App.controllers.kaplanOptions = new KaplanMeierOptions("#kaplanOptions");
+      App.controllers.kaplanOptions.selectOption("#kaplanOptions");
       App.models.kaplanMeierPatient.initPatients(App.models.patient.getPatients(),App.demographicAttributes[3]);
 
     })
