@@ -58,6 +58,7 @@ let KiviatDiagramView = function(targetID) {
 
   function drawLegend()
   {
+    console.log("in draw legend");
     let svgDefs = self.legendSvg.append('defs');
 
     let legendGradient = svgDefs.append('linearGradient')
@@ -112,8 +113,34 @@ let KiviatDiagramView = function(targetID) {
         }
 }
 
-  function createKiviatDiagram()
+  function createKiviatDiagram(d,i)
   {
+      let SVG = d3.select(this);
+      console.log(d,i);
+      createToolTips();
+      console.log(self.axisTip,self.centerTip);
+      SVG.call(self.axisTip);
+      SVG.call(self.centerTip);
+
 
   }
+
+  function createToolTips() {
+
+      console.log("Hello");
+
+        self.axisTip = d3.tip()
+            .attr("class", "d3-tip")
+            .direction("e")
+            .html(function(d) {
+                return d.attr + ": " + d.val;
+            });
+
+        self.centerTip = d3.tip()
+            .attr("class", "d3-tip")
+            .direction("e")
+            .html(function(d) {
+                return "ID: " + d.ID + "<br>Age: " + d.AgeAtTx + "<br>5y Sur. Pb.: " + d["Probability of Survival"];
+            });
+    }
 }
