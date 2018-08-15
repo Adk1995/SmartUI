@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="src/css/controls.css">
 
     <script type="text/javascript" src="src/js/view/cohortView.js"></script>
+    <script type="text/javascript" src="src/js/view/kiviatView.js"></script>
+
     <script src="src/js/view/KaplanMeierView.js" charset="utf-8"></script>
     <script type="text/javascript" src="src/js/controller/kaplanMeierOptionsController.js"></script>
     <script type="text/javascript" src="src/js/controller/nomogramSelector.js"></script>
@@ -82,7 +84,7 @@
       </div>
 
       <div id="kaplanMeierSelector" class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <h5>Survival Rate</h5>
           <select id="kaplanOptions">
 
@@ -91,12 +93,16 @@
 
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h5>Cohort Analysis</h5>
             <div id="cohortAnalysis">
-              
+
             </div>
         </div>
+      </div>
+
+      <div class="kiviatDiagramSection row">
+
       </div>
     </div>
   </body>

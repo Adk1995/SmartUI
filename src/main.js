@@ -204,6 +204,8 @@ App.cohortVariables = ["Dummy ID","Tm Laterality (R/L)","Affected Lymph nodes","
       App.views.cohort = new CohortView();
 
       //
+
+      App.views.kiviat = new KiviatDiagramView(".kiviatDiagramSection");
     })
     .catch(function(err) {
               console.log("Promise Error", err);

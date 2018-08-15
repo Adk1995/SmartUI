@@ -71,7 +71,7 @@ let CohortView = function(){
         .style("text-align","center");
       }
 ////////////////////////////////////////////////
-          d3.select(".col-md-8")
+          d3.select("#cohortAnalysis")
           .append("h5")
           .text("Dendogram");
   }
