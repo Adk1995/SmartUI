@@ -18,6 +18,8 @@ var App = App || {};
                                 "ecog",
                                 "Smoking status (Packs/Year)"
                                 ];
+  App.kiviatDiagramAttributes = ["Gender", "Ethnicity", "Tcategory", "Site",
+                                  "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
   App.cancerAttributes = ["Site",
                           "AJCC 7th edition",
@@ -205,7 +207,7 @@ App.cohortVariables = ["Dummy ID","Tm Laterality (R/L)","Affected Lymph nodes","
 
       //
 
-      App.views.kiviat = new KiviatDiagramView(".kiviatDiagramSection");
+      App.views.kiviat = new KiviatDiagramView("#kiviatDiagramSection");
     })
     .catch(function(err) {
               console.log("Promise Error", err);

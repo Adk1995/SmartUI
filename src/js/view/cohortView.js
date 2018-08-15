@@ -11,11 +11,12 @@ let CohortView = function(){
   function init()
   {
     let cohort = d3.select("#cohortAnalysis").append("div");
-
+    let patients = App.models.patient.getPatients();
+    let selectedID = App.models.applicationState.getSelectedPatientID();
     cohort.append("label")
-          .text("Selected Patient : ")
+          .text("Selected Patient ID : ")
           .append("label")
-          .text(App.models.applicationState.getSelectedPatientID());
+          .text(patients[selectedID]["Dummy ID"]);
 
 
     cohort.append("div")
@@ -32,10 +33,17 @@ let CohortView = function(){
 
     cohort.append("div")
           .append("label")
-          .text("Lymph Clusters : ")
-          .append("label")
-          .text();
+          .text("Affected Lymph Nodes: ")
+          .append("button")
+          .attr("onclick","window.location='https://uic-evl.github.io/CAMP-RT/';")
+          .text("CAMP-RT");
 
+    cohort.append("div")
+          .append("label")
+          .text("Lymph Clusters : ")
+          .append("button")
+          .attr("onclick","window.location='https://uic-evl.github.io/LymphaticCancerViz/#';")
+          .text("Lymph Clusters");
 
 
     //////////////////////////////////
@@ -73,7 +81,7 @@ let CohortView = function(){
 ////////////////////////////////////////////////
           d3.select("#cohortAnalysis")
           .append("h5")
-          .text("Dendogram");
+          .text("Dendrogram");
   }
   function transpose(a) {
       return Object.keys(a[0]).map(function(c) {
